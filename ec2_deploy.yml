@@ -1,0 +1,18 @@
+- name: Create new EC2 instance
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Launch EC2 Instance
+      ec2:
+        instance_type: t2.micro
+        image: ami-0f9fc25dd2506cf6d
+        region: us-east-1
+        key_name: devops
+        vpc_subnet_id: subnet-04d6b08b0fe7cf78d
+        assign_public_ip: yes
+        wait: yes
+        count: 1
+        aws_access_key: "{{access_key}}"
+        aws_secret_key: "{{secret_key}}"
+        security_token: "{{session_token}}"
